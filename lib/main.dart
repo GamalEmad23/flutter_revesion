@@ -1,7 +1,8 @@
 // ignore_for_file: avoid_unnecessary_containers, unused_field, prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:sec_flutter/sec/friends_screen.dart';
+import 'package:sec_flutter/sec_tasks/destinations_screen.dart';
+import 'package:sec_flutter/sec_tasks/friends_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: FriendsScreen());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: DestinationsScreen());
   }
 }
 
