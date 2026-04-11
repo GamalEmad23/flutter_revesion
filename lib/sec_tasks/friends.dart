@@ -17,4 +17,5 @@ List<Friends> friendsList=[
   Friends(image: "assets/images/2.jpg" , name: "ahmed", status: "Offline"),
   Friends(image: "assets/images/3.jpg" , name: "mohamed", status: "Online"),
   Friends(image: "assets/images/4.jpg" , name: "ali", status: "Offline"),
+  Friends(image: "assets/images/1.jpg" , name: "mahmode", status: "Online"),
 ];

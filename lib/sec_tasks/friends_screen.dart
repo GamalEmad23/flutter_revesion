@@ -8,7 +8,10 @@ class FriendsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Friends List"),
+        title: Text("Friends List" , style: TextStyle(
+          fontSize: 26,
+          fontWeight: FontWeight.bold
+        ),),
         centerTitle: true,
       ),
 
@@ -28,15 +31,16 @@ class FriendsScreen extends StatelessWidget {
             ),
 
             child: Row(
+              mainAxisAlignment: .spaceEvenly,
               children: [
-                CircleAvatar(
-                  minRadius: 45,
-                  backgroundImage: AssetImage(friendsList[index].image),
-                ),
+                Row(
+                  children: [
+                    CircleAvatar(
+                      minRadius: 45,
+                      backgroundImage: AssetImage(friendsList[index].image),
+                    ),
 
-                SizedBox(width: 60,),
-
-                /// 
+                    /// 
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -49,7 +53,15 @@ class FriendsScreen extends StatelessWidget {
                       color: Colors.grey.shade600
                     ),),
                   ],
-                )
+                ),
+                  ],
+                ),
+
+                SizedBox(width: 10,),
+
+                
+
+                Icon(Icons.arrow_forward_ios_rounded)
               ],
             ),
           ),
