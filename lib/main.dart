@@ -1,10 +1,15 @@
-// ignore_for_file: avoid_unnecessary_containers, unused_field, prefer_final_fields
+// ignore_for_file: avoid_unnecessary_containers, unused_field, prefer_final_fields, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:sec_flutter/sec_tasks/main_screen.dart';
+import 'package:sec_flutter/sec/lec/navigate.dart';
+import 'package:sec_flutter/sec/lec/navigate2.dart';
+import 'package:sec_flutter/sec/lec/share_pref.dart';
+import 'package:sec_flutter/sec/lec/test_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +18,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: MainScreen());
+    return MaterialApp(
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.amber,
+        ),
+
+        
+      ),
+      routes: {
+        '/navigate2':(context)=> Navigate2(name: '',),
+      },
+      debugShowCheckedModeBanner: false, home: SharePref());
   }
 }
 
