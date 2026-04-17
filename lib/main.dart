@@ -5,7 +5,6 @@ import 'package:sec_flutter/sec/lec/navigate.dart';
 import 'package:sec_flutter/sec/lec/navigate2.dart';
 import 'package:sec_flutter/sec/lec/share_pref.dart';
 import 'package:sec_flutter/sec/lec/test_screen.dart';
-import 'package:sec_flutter/sec/lec/weather.dart';
 import 'package:sec_flutter/sec_tasks/main_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
