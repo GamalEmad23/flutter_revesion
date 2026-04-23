@@ -2,14 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sec_flutter/sec/lec/navigate.dart';
 import 'package:sec_flutter/sec/lec/navigate2.dart';
-import 'package:sec_flutter/sec/lec/share_pref.dart';
-import 'package:sec_flutter/sec/lec/test_screen.dart';
-import 'package:sec_flutter/sec_tasks/main_screen.dart';
+import 'package:sec_flutter/statemangement_examples/checkbox_example/checkbox.dart';
+import 'package:sec_flutter/statemangement_examples/checkbox_example/cubit/checkbox_cubit.dart';
 import 'package:sec_flutter/statemangement_examples/counter_example/counter.dart';
 import 'package:sec_flutter/statemangement_examples/counter_example/cubit/counter_cubit.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +22,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(appBarTheme: AppBarTheme(backgroundColor: Colors.amber)),
       routes: {'/navigate2': (context) => Navigate2(name: '')},
       debugShowCheckedModeBanner: false,
-      home: BlocProvider(create: (context) => CounterCubit(), child: Counter()),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => CounterCubit(), child: Counter()),
+          BlocProvider(
+            create: (context) => CheckboxCubit(),
+            child: CheckboxScreen(),
+          ),
+        ],
+        child: CheckboxScreen(),
+      ),
     );
   }
 }
