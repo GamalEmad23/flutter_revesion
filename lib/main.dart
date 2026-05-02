@@ -2,14 +2,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sec_flutter/api/api_screen.dart';
+import 'package:sec_flutter/api/cubit/meal_cubit.dart';
+import 'package:sec_flutter/mm/login.dart';
+import 'package:sec_flutter/mm/register.dart';
 import 'package:sec_flutter/sec/lec/navigate2.dart';
 import 'package:sec_flutter/statemangement_examples/checkbox_example/checkbox.dart';
 import 'package:sec_flutter/statemangement_examples/checkbox_example/cubit/checkbox_cubit.dart';
 import 'package:sec_flutter/statemangement_examples/counter_example/counter.dart';
 import 'package:sec_flutter/statemangement_examples/counter_example/cubit/counter_cubit.dart';
+import 'package:sec_flutter/theme/cubit/theme_cubit.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(BlocProvider(create: (context) => ThemeCubit(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,20 +23,35 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(appBarTheme: AppBarTheme(backgroundColor: Colors.amber)),
-      routes: {'/navigate2': (context) => Navigate2(name: '')},
-      debugShowCheckedModeBanner: false,
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => CounterCubit(), child: Counter()),
-          BlocProvider(
-            create: (context) => CheckboxCubit(),
-            child: CheckboxScreen(),
+    return BlocBuilder<ThemeCubit, ThemeMode>(
+      builder: (context, themeMode) {
+        return MaterialApp(
+          theme: ThemeData(
+            appBarTheme: AppBarTheme(backgroundColor: Colors.amber),
           ),
-        ],
-        child: CheckboxScreen(),
-      ),
+          darkTheme: ThemeData.dark(),
+          themeMode: themeMode,
+          debugShowCheckedModeBanner: false,
+          home: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => CounterCubit(),
+                child: Counter(),
+              ),
+              BlocProvider(
+                create: (context) => CheckboxCubit(),
+                child: CheckboxScreen(),
+              ),
+
+              BlocProvider(
+                create: (context) => MealCubit()..getApiData(),
+                child: ApiScreen(),
+              ),
+            ],
+            child: LoginScreen(),
+          ),
+        );
+      },
     );
   }
 }
@@ -54,6 +74,19 @@ class MyPortfolio extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: [
+          BlocBuilder<ThemeCubit, ThemeMode>(
+            builder: (context, themeMode) {
+              return Switch(
+                value: themeMode == ThemeMode.dark,
+                activeColor: Colors.amber,
+                onChanged: (value) {
+                  context.read<ThemeCubit>().toggleTheme();
+                },
+              );
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Column(
